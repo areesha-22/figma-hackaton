@@ -3,6 +3,7 @@ import { CiHeart } from "react-icons/ci";
 import { MdLocalGasStation } from "react-icons/md";
 import { MdWifiTethering } from "react-icons/md";
 import { FaUserFriends } from "react-icons/fa";
+import Image from "next/image";
 import Link from "next/link"
 type Props ={
  heading: string,
@@ -26,7 +27,7 @@ const InfoCard = ({heading, sub, price,ImageUrl,icons}: Props) => {
         <p className="text-[#90A3BF] relative right-16">{sub}</p>
       </div>
       <div className="flex justify-center mb-2">
-        <img src={ImageUrl} alt={`${heading}'s profile`} className="w-44 h-44 rounded-full" /> {/* Adjust size and shape as needed */}
+    <Image src={ImageUrl} alt={`${heading}'s profile`} className=" rounded-full" width={44} height={44} /> {/* Adjust size and shape as needed */}
       </div>
       <div className="flex gap-4">
         <p className="font-bold"></p>
