@@ -1,10 +1,10 @@
 "use client"
 import { useState } from 'react';
-import Image from "next/image"
-import { FaHeart } from "react-icons/fa";
-import { CiStar } from "react-icons/ci";
-import Product from '@/Components/Product';
-import Footer from "@/Components/Footer";
+import Image from 'next/image'
+import { FaHeart } from 'react-icons/fa';
+import { CiStar } from 'react-icons/ci';
+import Product from '@/Components/Product'
+import Footer from '@/Components/Footer';
 
 const Rent = () => {
   const [selectedTypes, setSelectedTypes] = useState<string[]>([]);
@@ -74,7 +74,7 @@ const Rent = () => {
           Hatchback (14)
         </li>
       </ul>
-      <p>Selected Types: {selectedTypes.join(', ')}</p>
+      <p>Selected Types: {selectedTypes.join('&apos; ')}</p>
       <h2 className='text-gray-400'>Capacity</h2>
       <ul>
         <li>
@@ -111,7 +111,7 @@ const Rent = () => {
         </li>
         
       </ul>
-      <p>Selected Types: {selectedTypes.join(', ')}</p>
+      <p>Selected Types {selectedTypes.join('&apos; ')}</p>
       <h2 className='text-gray-500'>Price</h2>
       <input type="range" min="10" max="20" className='w-48 text-blue-600'></input>
     </div>
@@ -141,7 +141,7 @@ futuristic and elegant sports car</p>
     </div>
     
     <div className='flex relative top-3 '>  <CiStar  className='hover:text-yellow-600 '/><CiStar className='hover:text-yellow-600 ' /><CiStar className='hover:text-yellow-600 ' /><CiStar className='hover:text-yellow-600 ' /><CiStar className='hover:bg-yellow-600 ' />440+ Reviewer </div>
-   <p className='font-normal text-base text-gray-500 pt-6'>NISMO has become the embodiment of Nissan's <br></br>outstanding performance, inspired by the most<br></br> unforgiving proving ground, the "race track".</p>
+   <p className='font-normal text-base text-gray-500 pt-6'>NISMO has become the embodiment of Nissans <br></br>outstanding performance&apos; inspired by the most<br></br> unforgiving proving ground&apos; the race track.</p>
    <div className='grid grid-row-[100px_100px_100px] grid-cols-[100px_100px_100px_100px] pt-8 '>
 <div>Type car</div>
 <div>Sports</div>
@@ -169,7 +169,7 @@ futuristic and elegant sports car</p>
         
     <h2 className='font-bold text-xl'>Alex Stanton <br></br><span className='text-gray-400 text-sm'>CEO at Bukalapak </span></h2>
 <div className='flex  gap-11'>
-    <p className='text-gray-500 font-normal text-sm relative top-20 right-32'>We are very happy with the service from the MORENT App. Morent has a low price and also a large variety of cars with <br></br> good and comfortable facilities. In addition, the service provided by the officers is also very friendly and very polite.</p>
+    <p className='text-gray-500 font-normal text-sm relative top-20 right-32'>We are very happy with the service from the MORENT App. Morent has a low price and also a large variety of cars with <br></br> good and comfortable facilities. In addition&apos; the service provided by the officers is also very friendly and very polite.</p>
     
     <div className='flex  '> <CiStar  className='hover:text-yellow-600 '/><CiStar className='hover:text-yellow-600 ' /><CiStar className='hover:text-yellow-600 ' /><CiStar className='hover:text-yellow-600 ' /><CiStar className='hover:bg-yellow-600 ' /> </div>
         </div></div>
@@ -179,7 +179,7 @@ futuristic and elegant sports car</p>
             
         <h2 className='font-bold text-xl'>Alex Stanton <br></br><span className='text-gray-400 text-sm'>CEO at Bukalapak </span></h2>
     <div className='flex  gap-11'>
-        <p className='text-gray-500 font-normal text-sm relative top-20 right-32'>We are very happy with the service from the MORENT App. Morent has a low price and also a large variety of cars with <br></br> good and comfortable facilities. In addition, the service provided by the officers is also very friendly and very polite.</p>
+        <p className='text-gray-500 font-normal text-sm relative top-20 right-32'>We are very happy with the service from the MORENT App. Morent has a low price and also a large variety of cars with <br></br> good and comfortable facilities. In addition&apos; the service provided by the officers is also very friendly and very polite.</p>
         
         <div className='flex  '> <CiStar  className='hover:text-yellow-600 '/><CiStar className='hover:text-yellow-600 ' /><CiStar className='hover:text-yellow-600 ' /><CiStar className='hover:text-yellow-600 ' /><CiStar className='hover:bg-yellow-600 ' /> </div>
             </div></div>

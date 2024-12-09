@@ -8,11 +8,11 @@ type Props ={
  heading: string,
  sub: string,
   price: string,
-  imageUrl: string,
+  ImageUrl: string,
  icons:string,
 }
 
-const InfoCard = ({heading, sub, price,imageUrl,icons}: Props) => {
+const InfoCard = ({heading, sub, price,ImageUrl,icons}: Props) => {
 
   return (
     
@@ -26,7 +26,7 @@ const InfoCard = ({heading, sub, price,imageUrl,icons}: Props) => {
         <p className="text-[#90A3BF] relative right-16">{sub}</p>
       </div>
       <div className="flex justify-center mb-2">
-        <img src={imageUrl} alt={`${heading}'s profile`} className="w-44 h-44 rounded-full" /> {/* Adjust size and shape as needed */}
+        <img src={ImageUrl} alt={`${heading}'s profile`} className="w-44 h-44 rounded-full" /> {/* Adjust size and shape as needed */}
       </div>
       <div className="flex gap-4">
         <p className="font-bold"></p>
