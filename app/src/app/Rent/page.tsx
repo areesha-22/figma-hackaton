@@ -1,19 +1,19 @@
-"use client"
-import { useState } from 'react';
+'use client'
+import { useState } from 'react'
 import Image from 'next/image'
-import { FaHeart } from 'react-icons/fa';
-import { CiStar } from 'react-icons/ci';
+import { FaHeart } from 'react-icons/fa'
+import { CiStar } from 'react-icons/ci'
 import Product from '@/Components/Product'
-import Footer from '@/Components/Footer';
+import Footer from '@/Components/Footer'
 
 const Rent = () => {
-  const [selectedTypes, setSelectedTypes] = useState<string[]>([]);
+  const [selectedTypes, setSelectedTypes] = useState<string[]>([])
 
   const handleTypeChange = (type: string) => {
     if (selectedTypes.includes(type)) {
-      setSelectedTypes(selectedTypes.filter((t) => t !== type));
+      setSelectedTypes(selectedTypes.filter((t) => t !== type))
     } else {
-      setSelectedTypes([...selectedTypes, type]);
+      setSelectedTypes([...selectedTypes, type])
     }
   };
 
@@ -27,7 +27,7 @@ const Rent = () => {
       <ul>
         <li>
           <input
-            type="checkbox"
+            type='checkbox'
             checked={selectedTypes.includes('Sport')}
             onChange={() => handleTypeChange('Sport')}
           />
@@ -35,7 +35,7 @@ const Rent = () => {
         </li>
         <li>
           <input
-            type="checkbox"
+            type='checkbox'
             checked={selectedTypes.includes('SUV')}
             onChange={() => handleTypeChange('SUV')}
           />
@@ -43,7 +43,7 @@ const Rent = () => {
         </li>
         <li>
           <input
-            type="checkbox"
+            type='checkbox'
             checked={selectedTypes.includes('MPV')}
             onChange={() => handleTypeChange('MPV')}
           />
@@ -51,7 +51,7 @@ const Rent = () => {
         </li>
         <li>
           <input
-            type="checkbox"
+            type='checkbox'
             checked={selectedTypes.includes('Sedan')}
             onChange={() => handleTypeChange('Sedan')}
           />
@@ -59,7 +59,7 @@ const Rent = () => {
         </li>
         <li>
           <input
-            type="checkbox"
+            type='checkbox'
             checked={selectedTypes.includes('Coupe')}
             onChange={() => handleTypeChange('Coupe')}
           />
@@ -67,7 +67,7 @@ const Rent = () => {
         </li>
         <li>
           <input
-            type="checkbox"
+            type='checkbox'
             checked={selectedTypes.includes('Hatchback')}
             onChange={() => handleTypeChange('Hatchback')}
           />
@@ -79,7 +79,7 @@ const Rent = () => {
       <ul>
         <li>
           <input
-            type="checkbox"
+            type='checkbox'
             checked={selectedTypes.includes('Sport')}
             onChange={() => handleTypeChange('Sport')}
           />
@@ -87,7 +87,7 @@ const Rent = () => {
         </li>
         <li>
           <input
-            type="checkbox"
+            type='checkbox'
             checked={selectedTypes.includes('SUV')}
             onChange={() => handleTypeChange('SUV')}
           />
@@ -95,7 +95,7 @@ const Rent = () => {
         </li>
         <li>
           <input
-            type="checkbox"
+            type='checkbox'
             checked={selectedTypes.includes('MPV')}
             onChange={() => handleTypeChange('MPV')}
           />
@@ -103,7 +103,7 @@ const Rent = () => {
         </li>
         <li>
           <input
-            type="checkbox"
+            type='checkbox'
             checked={selectedTypes.includes('Sedan')}
             onChange={() => handleTypeChange('Sedan')}
           />
@@ -113,25 +113,25 @@ const Rent = () => {
       </ul>
       <p>Selected Types {selectedTypes.join('&apos; ')}</p>
       <h2 className='text-gray-500'>Price</h2>
-      <input type="range" min="10" max="20" className='w-48 text-blue-600'></input>
+      <input type='range' min='10' max='20' className='w-48 text-blue-600'></input>
     </div>
     
     
     <div>
     <div className='pt-12 relative right-14'>
         
-    <Image  src="/bg2.jpeg"  width={420} height={550} alt='BG-IMAGE'  ></Image></div>
+    <Image  src='/bg2.jpeg'  width={420} height={550} alt='BG-IMAGE'  ></Image></div>
 <div className='relative bottom-64 p-5 right-8'>
 <h1 className='font-semibold text-3xl text-white '>Sports car with the best<br></br> design and acceleration</h1>
 <p className='text-white pt-3'>Safety and comfort while driving a<br></br> 
 futuristic and elegant sports car</p>
 <div className='pt-4 '>
-    <Image alt='car image' src={"/car2.svg"} width={280} height={100}></Image></div>
-<div className='flex gap-5 pt-7 relative right-16'><Image alt='veiw1' src={"/View1.svg"}width={132} height={108}>
+    <Image alt='car image' src={'/car2.svg'} width={280} height={100}></Image></div>
+<div className='flex gap-5 pt-7 relative right-16'><Image alt='veiw1' src={'/View1.svg'}width={132} height={108}>
     </Image>
-    <Image alt='veiw1' src={"/View2.svg"}width={132} height={108}>
+    <Image alt='veiw1' src={'/View2.svg'}width={132} height={108}>
     </Image>
-    <Image alt='veiw1' src={"/View3.svg"}width={132} height={108}>
+    <Image alt='veiw1' src={'/View3.svg'}width={132} height={108}>
     </Image>
     
 </div>
@@ -165,7 +165,7 @@ futuristic and elegant sports car</p>
         <h1 className='font-semibold text-xl pb-4'>REVIEWS</h1>
         <div className='flex '>
             
-        <Image src={"/Profile1.svg"} alt='image' width={56} height={56} ></Image>
+        <Image src={'/Profile1.svg'} alt='image' width={56} height={56} ></Image>
         
     <h2 className='font-bold text-xl'>Alex Stanton <br></br><span className='text-gray-400 text-sm'>CEO at Bukalapak </span></h2>
 <div className='flex  gap-11'>
@@ -175,7 +175,7 @@ futuristic and elegant sports car</p>
         </div></div>
         <div className='flex pt-24 '>
             
-            <Image src={"/Profile2.svg"} alt='image' width={56} height={56} ></Image>
+            <Image src={'/Profile2.svg'} alt='image' width={56} height={56} ></Image>
             
         <h2 className='font-bold text-xl'>Alex Stanton <br></br><span className='text-gray-400 text-sm'>CEO at Bukalapak </span></h2>
     <div className='flex  gap-11'>
