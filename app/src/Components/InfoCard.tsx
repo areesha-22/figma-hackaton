@@ -16,7 +16,7 @@ const InfoCard = ({heading, sub, price,imageUrl,icons}: Props) => {
 
   return (
     
-    <div className="border-gray-400 border-b-2 border-t-2 border-y-2 w-72 h-96 text-black flex flex-col items-center rounded-lg m-2 relative bottom-32  ">
+    <div className="border-gray-400 border-b-2 border-t-2 border-y-2 w-72 h-96 text-black flex flex-col items-center rounded-lg m-2 relative bottom-32 ">
       <div className="flex gap-4">
         <p className="font-bold"></p>
         <p className="flex gap-14 font-bold text-xl">{heading} <CiHeart /></p>
