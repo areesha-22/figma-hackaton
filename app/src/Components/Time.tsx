@@ -1,29 +1,13 @@
-"use client"
 
-import React, { useState } from 'react';
 import { FaArrowDownLong, FaArrowUpLong } from "react-icons/fa6";
-interface Props {
-  location:string,
-  date:number,
-  time:number
-}
 
-const PickUp = ({  }: Props) => {
-  const [location, setLocation] = useState('');
-  const [date, setDate] = useState('');
-  const [time, setTime] = useState('');
 
-  const handleLocationChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setLocation(event.target.value);
-  };
 
-  const handleDateChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setDate(event.target.value);
-  };
 
-  const handleTimeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setTime(event.target.value);
-  };
+
+ 
+ const PickUp = () => {
+  
 
   return (
     <div>
@@ -33,19 +17,19 @@ const PickUp = ({  }: Props) => {
       <div className='flex'>
       
         <div className='flex'>
-        <label htmlFor="location" className='font-bold text-lg'>Location:</label><br></br>
-        <select id="location" value={location} onChange={handleLocationChange}  className="relative top-6 right-16">
+        <label  className='font-bold text-lg'>Location:</label><br></br>
+        <select className="relative top-6 right-16">
           <option >Select your city</option>
         
         </select>
       </div>
       <div>
-        <label htmlFor="date" className='font-bold text-lg'>Date:</label><br></br>
-        <input type="date" id="date" value={date} onChange={handleDateChange}  className="relative top-3 right-5"/>
-      </div>
+      <h1 className='font-semibold text-base pt-5'>Date</h1>
+      <div> <input id="birthdate" type="date"></input></div>
+</div>
       <div>
-        <label htmlFor="time" className='font-bold text-lg'>Time:</label><br></br>
-        <input type="time" id="time" value={time} onChange={handleTimeChange}  className="relative top-4" />
+      <h1 className='font-semibold text-base pt-5'>Time</h1>
+      <input id="appoint" type="time"></input>
       </div>
      <button className="bg-[#3563E9] w-14 h-14 text-white flex text-center justify-center content-center rounded-lg relative left-14 ">
      <div className="flex relative top-4">< FaArrowUpLong/>
@@ -57,19 +41,19 @@ const PickUp = ({  }: Props) => {
       <div className='flex'>
       
         <div className='flex'>
-        <label htmlFor="location" className='font-bold text-lg'>Location:</label><br></br>
-        <select id="location" value={location} onChange={handleLocationChange}  className="relative top-6 right-16">
-          <option value="">Select your city</option>
+        <label className='font-bold text-lg'>Location:</label><br></br>
+        <select className="relative top-6 right-16">
+          <option>Select your city</option>
         
         </select>
       </div>
       <div>
-        <label htmlFor="date" className='font-bold text-lg'>Date:</label><br></br>
-        <input type="date" id="date" value={date} onChange={handleDateChange}  className="relative top-3 right-5"/>
+      <h1 className='font-semibold text-base pt-5'>Date</h1>
+      <div> <input id="birthdate" type="date"></input></div>
       </div>
       <div>
-        <label htmlFor="time" className='font-bold text-lg'>Time:</label><br></br>
-        <input type="time" id="time" value={time} onChange={handleTimeChange}  className="relative top-4" />
+      <h1 className='font-semibold text-base pt-5'>Time</h1>
+      <input id="appoint" type="time"></input>
       </div>
      
     </div></div></div></div>

@@ -27,7 +27,7 @@ const InfoCard = ({heading, sub, price,ImageUrl,icons}: Props) => {
         <p className="text-[#90A3BF] relative right-16">{sub}</p>
       </div>
       <div className="flex justify-center mb-2">
-    <Image src={ImageUrl} alt={`${heading}'s profile`} className=" rounded-full" width={44} height={44} /> {/* Adjust size and shape as needed */}
+    <Image src={ImageUrl} alt={`${heading}'s profile`} className=" rounded-full" width={100} height={100} /> {/* Adjust size and shape as needed */}
       </div>
       <div className="flex gap-4">
         <p className="font-bold"></p>
