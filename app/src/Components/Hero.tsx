@@ -24,7 +24,7 @@ const Hero = () => {
     <div className='w-[500px] h-[350px] rounded-lg  relative bottom-64 px-6 '>
 <h1 className='font-semibold text-3xl text-white'>Easy way to rent a<br></br> car at a low price</h1>
    <p className='text-white font-medium text-base pt-5'>Providing cheap car rental services<br></br> and safe and comfortable facilities.</p>
-    <div className='pt-5'><button className='bg-[#54A6FF] w-32 h-11 text-white rounded-lg px-5'>Rental Car</button></div>
+   <Link href={ '/Rent'}><div className='pt-5'><button className='bg-[#54A6FF] w-32 h-11 text-white rounded-lg px-5'>Rental Car</button></div></Link>
     <div>
         <Image alt='car' src={"/car2.svg"} width={"310"} height={"100"} className='relative  left-32 bottom-12' ></Image>
         </div>
