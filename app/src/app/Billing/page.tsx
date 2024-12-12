@@ -43,7 +43,7 @@ const Page = () => {
           <p className="text-gray-400">Prices may change depending on the length of the rental and the price of your rental car.</p>
           <div className="flex flex-wrap justify-center pt-12">
             <div className="w-full lg:w-1/2 xl:w-1/3 p-6">
-              <Image alt='car image' src={"/view1.svg"} width={132} height={108} />
+              <Image alt='car image' src={"/View1.svg"} width={132} height={108} />
             </div>
             <div className="w-full lg:w-1/2 xl:w-1/3 p-6">
               <h1 className="font-bold text-2xl">Nissan GT-R</h1>

@@ -15,7 +15,7 @@ const Hero = () => {
             <p className="text-white font-medium text-base pt-5 md:text-sm lg:text-base">Ease of doing a car rental safely and<br></br> reliably. Of course at a low price.</p>
             <Link href={ './Ctype'}>
               <div className="pt-5">
-                <button className="bg-[#3563E9] w-32 md:w-28 lg:w-32 h-11 text-white rounded-lg px-5 md:px-4 lg:px-5">Rental Car</button>
+                <button className="bg-[#3563E9]  md:w-28 lg:w-32 h-11 text-white rounded-lg px-5 md:px-4 lg:px-5">Rental Car</button>
               </div>
             </Link>
             <div>
@@ -32,7 +32,7 @@ const Hero = () => {
             <p className="text-white font-medium text-base pt-5 md:text-sm lg:text-base">Providing cheap car rental services<br></br> and safe and comfortable facilities.</p>
             <Link href={ '/Rent'}>
               <div className="pt-5">
-                <button className="bg-[#54A6FF] w-32 md:w-28 lg:w-32 h-11 text-white rounded-lg px-5 md:px-4 lg:px-5">Rental Car</button>
+                <button className="bg-[#54A6FF]  md:w-28 lg:w-32 lg:h-11 text-white rounded-lg px-5 md:px-4 lg:px-5">Rental Car</button>
               </div>
             </Link>
             <div>
