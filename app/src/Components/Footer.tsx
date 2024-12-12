@@ -8,7 +8,7 @@ const Footer = () => {
           <h1 className="font-bold text-3xl text-[#3563E9] pt-16">MORENT</h1>
           <p className="text-[#13131399] font-medium text-base pt-5">Our vision is to provide convenience <br></br>and help increase your sales business.</p>
         </div>
-        <div className="grid grid-rows-[50px_50px_50px_50px] grid-cols-[200px_200px_200px] pt-28 w-full md:w-1/2 lg:w-2/3">
+        <div className="grid lg:grid-rows-[50px_50px_50px_50px] lg:grid-cols-[200px_200px_200px] pt-28 w-full md:w-1/2 lg:w-2/3">
           <div className="font-semibold text-xl">About</div>
           <div className="font-semibold text-xl">Community</div>
           <div className="font-semibold text-xl">Social</div>
