@@ -2,7 +2,7 @@ import React from 'react'
 import Hero from '../Components/Hero'
 import Time from "../Components/Time"
 import Product from '../Components/Product'
-import Footer from "../Components/Footer"
+import Footer from '../Components/Footer'
 
 const page = () => {
   return (
@@ -13,7 +13,7 @@ const page = () => {
  <Time/>
  <Product/>
       <Footer/>
-
+     
     </div>
   )
 }

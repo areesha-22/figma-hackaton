@@ -2,8 +2,8 @@ import React from 'react'
 import InfoCard from "../Components/InfoCard"
 const Product = () => {
   return (
-    <div>
-      <div className='text-gray-400 font-semibold text-base p-9 relative bottom-32'>Popular Car</div>
+    <div className='pt-10'>
+      <div className='text-gray-400 font-semibold text-base p-9 relative bottom-48 '>Popular Car</div>
  <div className='md:flex'>
  <InfoCard heading="Koenigsegg" sub="sport" price="$99.00/day" icons='' ImageUrl='/car1.svg'/>
       <InfoCard heading="NissanGT-R" sub="sport" price="$80.00/day" icons="" ImageUrl='/car2.svg'/>
