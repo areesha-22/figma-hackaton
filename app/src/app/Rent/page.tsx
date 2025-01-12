@@ -98,7 +98,7 @@ const Rent = () => {
               <span className="text-gray-500 text-sm">440+ Reviews</span>
             </div>
             <p className="text-gray-500 mt-4">
-              NISMO has become the embodiment of Nissan's outstanding performance, inspired by the most unforgiving
+              NISMO has become the embodiment of Nissans outstanding performance inspired by the most unforgiving
               proving ground—the race track.
             </p>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4">
