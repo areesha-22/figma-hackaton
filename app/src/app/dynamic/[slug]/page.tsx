@@ -5,6 +5,7 @@ import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";
 import { MdLocalGasStation } from "react-icons/md";
 import { FaUserFriends } from "react-icons/fa";
+import Footer from "@/Components/Footer";
 interface ProductPageProps{
     params:Promise<{slug:string}>
 }
@@ -59,7 +60,8 @@ export default async function ProductPage({params}:ProductPageProps)
             </div>
 
 </div>
-</div></div></div>
+</div></div>
+<Footer/></div>
 
 
 
