@@ -8,11 +8,10 @@ const page = () => {
   return (
     <div>
 
- <Hero/>
-
- <Time/>
- <Product/>
-      <Footer/>
+<Hero/>
+<Time/>
+<Product/>
+<Footer/>
      
     </div>
   )

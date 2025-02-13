@@ -1,40 +1,122 @@
-import React from 'react'
+"use client";
+
+import React, { useState, useEffect } from "react";
 import { FaHome, FaCar, FaWallet } from "react-icons/fa";
-import { IoBarChart, IoMoonOutline } from "react-icons/io5";
-import { FaRegMessage } from "react-icons/fa6";
-import { SlCalender } from "react-icons/sl";
+
 import { RiSettingsFill } from "react-icons/ri";
 import { CiCircleInfo } from "react-icons/ci";
-import { WiMoonAltNew } from "react-icons/wi";
 import { MdShoppingBag, MdOutlineWbSunny } from "react-icons/md";
-import Footer from '@/Components/Footer'
-import Image from "next/image"
+import Footer from "@/Components/Footer";
+import Link from "next/link";
 
-import Link from 'next/link'
-const page = () => {
+const Page = () => {
+  const [location, setLocation] = useState("Select a location");
+  const [pickupDate, setPickupDate] = useState("");
+  const [pickupTime, setPickupTime] = useState("");
+  const [dropoffDate, setDropoffDate] = useState("");
+  const [dropoffTime, setDropoffTime] = useState("");
+  const [totalPrice, setTotalPrice] = useState(0);
+  const [distance, setDistance] = useState(0);
+  const [map, setMap] = useState(null);
+  const [marker, setMarker] = useState(null);
+  const [selectedCoords, setSelectedCoords] = useState({ lat: null, lng: null });
+
+  // Load Google Maps
+  useEffect(() => {
+    const loadGoogleMaps = async () => {
+      if (!window.google) {
+        const script = document.createElement("script");
+        script.src = `https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY&callback=initMap
+        `;
+        script.async = true;
+        script.onload = initMap;
+        document.body.appendChild(script);
+      } else {
+        initMap();
+      }
+    };
+
+    loadGoogleMaps();
+  }, []);
+
+  // Initialize Google Map
+  const initMap = () => {
+    const defaultCoords = { lat: 25.276987, lng: 55.296249 }; // Default to Dubai
+    const mapInstance = new window.google.maps.Map(document.getElementById("map"), {
+      center: defaultCoords,
+      zoom: 12,
+    });
+
+    const markerInstance = new window.google.maps.Marker({
+      position: defaultCoords,
+      map: mapInstance,
+      draggable: true,
+    });
+
+    setMap(mapInstance);
+    setMarker(markerInstance);
+
+    markerInstance.addListener("dragend", () => {
+      const position = markerInstance.getPosition();
+      setSelectedCoords({ lat: position.lat(), lng: position.lng() });
+      fetchLocation(position.lat(), position.lng());
+    });
+  };
+
+  // Fetch location name from coordinates
+  const fetchLocation = async (lat, lng) => {
+    try {
+      const response = await fetch(
+        `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}`
+      );
+      const data = await response.json();
+      setLocation(data.display_name || "Selected location");
+    } catch (error) {
+      console.error("Error fetching location:", error);
+    }
+  };
+
+  // Auto-fill Date & Time
+  useEffect(() => {
+    const now = new Date();
+    const formattedDate = now.toISOString().split("T")[0];
+    const formattedTime = now.toTimeString().split(" ")[0].slice(0, 5);
+    setPickupDate(formattedDate);
+    setPickupTime(formattedTime);
+    setDropoffDate(formattedDate);
+    setDropoffTime(formattedTime);
+  }, []);
+
+  // Calculate Rental Price
+  useEffect(() => {
+    if (pickupDate && dropoffDate) {
+      const start = new Date(`${pickupDate}T${pickupTime}`);
+      const end = new Date(`${dropoffDate}T${dropoffTime}`);
+      const diffHours = Math.max((end - start) / 36e5, 1); // Minimum 1 hour
+      const price = distance * 0.5 + diffHours * 10; // $0.5/km + $10/hour
+      setTotalPrice(price);
+    }
+  }, [pickupDate, pickupTime, dropoffDate, dropoffTime, distance]);
+
   return (
     <div className="p-4 sm:p-8">
       <div className="flex flex-col md:flex-row gap-8">
         {/* Sidebar */}
         <div className="w-full md:w-1/4 bg-gray-100 p-4 rounded-lg shadow">
-          <div className="text-gray-500 font-semibold text-xs mb-4">M A I N M E N U</div>
           <ul className="space-y-4">
-             <Link href='/'><li className="flex items-center gap-4 hover:text-[#3563E9] text-gray-500"><FaHome /> Dashboard</li></Link>
-             <Link href='/Ctype'><li className="flex items-center gap-4 hover:text-[#3563E9] text-gray-500"><FaCar /> Car Rent</li></Link>
-             <Link href='/Rent'><li className="flex items-center gap-4 hover:text-[#3563E9] text-gray-500"><IoBarChart /> Insight</li></Link>
-             <Link href='/Billing'><li className="flex items-center gap-4 hover:text-[#3563E9] text-gray-500"><FaWallet /> Reimburse</li></Link>
-             <Link href='/'><li className="flex items-center gap-4 hover:text-[#3563E9] text-gray-500"><FaRegMessage /> Inbox</li></Link>
-             <Link href='/'><li className="flex items-center gap-4 hover:text-[#3563E9] text-gray-500"><SlCalender /> Calendar</li></Link>
+            <Link href="/"><li className="flex items-center gap-4 hover:text-[#3563E9] text-gray-500"><FaHome /> Dashboard</li></Link>
+            <Link href="/Ctype"><li className="flex items-center gap-4 hover:text-[#3563E9] text-gray-500"><FaCar /> Car Rent</li></Link>
+            <Link href="/Billing"><li className="flex items-center gap-4 hover:text-[#3563E9] text-gray-500"><FaWallet /> Billing</li></Link>
           </ul>
           <div className="text-gray-500 font-semibold text-xs pt-12">P R E F E R E N C E S</div>
           <ul className="space-y-4 mt-4">
             <li className="flex items-center gap-4 hover:text-[#3563E9] text-gray-500"><RiSettingsFill /> Settings</li>
             <li className="flex items-center gap-4 hover:text-[#3563E9] text-gray-500"><CiCircleInfo /> Help & Center</li>
-            <li className="flex items-center gap-4 hover:text-[#3563E9] text-gray-500">
-              <MdShoppingBag /> Dark Mode <MdOutlineWbSunny className="text-blue-600" /> <IoMoonOutline />
-            </li>
+           
           </ul>
           <div className="text-gray-500 font-semibold text-xl mt-12">Log Out</div>
+        
+
         </div>
 
         {/* Main Content */}
@@ -42,123 +124,56 @@ const page = () => {
           {/* Rental Details */}
           <div>
             <h1 className="font-bold text-2xl">Details Rental</h1>
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14421.78265054028!2d68.36003015000003!3d25.356376099999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x394c7041857f209b%3A0xd6d38f829babc717!2sLatifabad%20Unit%2011%20Latifabad%2C%20Hyderabad%2C%20Sindh%2C%20Pakistan!5e0!3m2!1sen!2s!4v1733790847477!5m2!1sen!2s"
-              className="w-full h-64 md:h-80 rounded-lg mt-4"
-              loading="lazy"
-            ></iframe>
-            <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 mt-6">
-              <Image src={"/view1.svg"} width={132} height={72} alt="car image" />
-              <div>
-                <h2 className="text-2xl font-bold">Nissan GT - R</h2>
-                <p className="text-gray-500">Sports</p>
-              </div>
+            <div className="mt-4">
+              <label className="font-bold text-lg">Selected Location:</label>
+              <p className="text-gray-500 mt-2">{location}</p>
             </div>
           </div>
 
-          {/* Pick-Up and Drop-Up */}
+          {/* Google Map */}
+          <div className="w-full h-64 md:h-80 rounded-lg mt-4" id="map"></div>
+
+          {/* Pick-Up and Drop-Off */}
           <div className="space-y-8">
             <div>
               <h2 className="text-lg font-bold">Pick-Up</h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
                 <div>
-                  <label className="font-bold text-lg block">Location:</label>
-                  <select className="w-full border p-2 rounded mt-2">
-                    <option>Select your city</option>
-                  </select>
-                </div>
-                <div>
-                  <label className="font-semibold text-base block">Date:</label>
-                  <input type="date" className="w-full border p-2 rounded mt-2" />
+                  <label className="font-bold text-lg block">Date:</label>
+                  <input type="date" className="w-full border p-2 rounded mt-2" value={pickupDate} onChange={(e) => setPickupDate(e.target.value)} />
                 </div>
                 <div>
                   <label className="font-semibold text-base block">Time:</label>
-                  <input type="time" className="w-full border p-2 rounded mt-2" />
+                  <input type="time" className="w-full border p-2 rounded mt-2" value={pickupTime} onChange={(e) => setPickupTime(e.target.value)} />
                 </div>
               </div>
             </div>
 
             <div>
-              <h2 className="text-lg font-bold">Drop-Up</h2>
+              <h2 className="text-lg font-bold">Drop-Off</h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
                 <div>
-                  <label className="font-bold text-lg block">Location:</label>
-                  <select className="w-full border p-2 rounded mt-2">
-                    <option>Select your city</option>
-                  </select>
-                </div>
-                <div>
-                  <label className="font-semibold text-base block">Date:</label>
-                  <input type="date" className="w-full border p-2 rounded mt-2" />
+                  <label className="font-bold text-lg block">Date:</label>
+                  <input type="date" className="w-full border p-2 rounded mt-2" value={dropoffDate} onChange={(e) => setDropoffDate(e.target.value)} />
                 </div>
                 <div>
                   <label className="font-semibold text-base block">Time:</label>
-                  <input type="time" className="w-full border p-2 rounded mt-2" />
+                  <input type="time" className="w-full border p-2 rounded mt-2" value={dropoffTime} onChange={(e) => setDropoffTime(e.target.value)} />
                 </div>
               </div>
             </div>
           </div>
 
           {/* Total Rental Price */}
-          <div className="flex flex-col sm:flex-row justify-between items-center">
-            <div>
-              <h2 className="font-bold text-xl">Total Rental Price</h2>
-              <p className="text-gray-500">Overall price and includes rental discount</p>
-            </div>
-            <div className="font-bold text-3xl">$80.00</div>
-          </div>
-
-          {/* Top 5 Car Rentals */}
-          <div>
-            <h2 className="font-bold text-xl">Top 5 Car Rental</h2>
-            <div className="flex flex-wrap gap-4 mt-4">
-              <Image src={"/E.png"} width={207} height={100} alt="Top rental cars" />
-              <div className="flex-1 grid grid-cols-2 gap-4">
-                <ul className="space-y-4">
-                  <li className="flex items-center text-gray-500"><WiMoonAltNew className="text-[#080a0b]" /> Sport Car</li>
-                  <li className="flex items-center text-gray-500"><WiMoonAltNew className="text-[#0D3559]" /> SUV</li>
-                  <li className="flex items-center text-gray-500"><WiMoonAltNew className="text-[#0D3559]" /> Coupe</li>
-                  <li className="flex items-center text-gray-500"><WiMoonAltNew className="text-[#0D3559]" /> Hatchback</li>
-                  <li className="flex items-center text-gray-500"><WiMoonAltNew className="text-[#0D3559]" /> MPV</li>
-                </ul>
-                <ul className="space-y-4">
-                  <li className="font-semibold text-sm">17,439</li>
-                  <li className="font-semibold text-sm">9,478</li>
-                  <li className="font-semibold text-sm">18,197</li>
-                  <li className="font-semibold text-sm">12,510</li>
-                  <li className="font-semibold text-sm">12,510</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          {/* Recent Transactions */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
-            <div>
-              <h2 className="font-bold text-xl">Recent Transactions</h2>
-              <div className="space-y-4 mt-4">
-                <Image src={"/car1.svg"} width={114} height={36} alt="Recent car" />
-                <Image src={"/car2.svg"} width={114} height={36} alt="Recent car" />
-                <Image src={"/car3.svg"} width={114} height={36} alt="Recent car" />
-                <Image src={"/car4.svg"} width={114} height={36} alt="Recent car" />
-              </div>
-            </div>
-            <div>
-              <div className="space-y-4">
-                <div className="text-xl font-bold">Nissan GT - R<br /><span className="text-gray-500">Sports</span></div>
-                <div className="text-xl font-bold">Koenigsegg<br /><span className="text-gray-500">Sports</span></div>
-                <div className="text-xl font-bold">Rolls-Royce<br /><span className="text-gray-500">Sports</span></div>
-                <div className="text-xl font-bold">CR - V<br /><span className="text-gray-500">Sports</span></div>
-              </div>
-            </div>
+          <div className="flex justify-between items-center">
+            <h2 className="font-bold text-xl">Total Rental Price</h2>
+            <div className="font-bold text-3xl">${totalPrice.toFixed(2)}</div>
           </div>
         </div>
       </div>
-      <div>
-        <Footer/>
-      </div>
+      <Footer />
     </div>
-  )
-}
+  );
+};
 
-export default page
+export default Page;
