@@ -32,9 +32,10 @@ const Page = () => {
   // Calculate rental price based on time difference
   useEffect(() => {
     if (pickupDate && dropoffDate) {
-      const start = new Date(`${pickupDate}T${pickupTime}`);
-      const end = new Date(`${dropoffDate}T${dropoffTime}`);
-      const hours = Math.max((end - start) / 36e5, 1); // Ensure minimum 1 hour
+      const start: Date = new Date(pickupDate + "T" + pickupTime);
+      const end: Date = new Date(dropoffDate + "T" + dropoffTime);
+      
+      const hours: number = Math.max((end.getTime() - start.getTime()) / 36e5, 1); // Ensure minimum 1 hour
       const calculatedSubtotal = hours * 10; // $10 per hour
 
       setSubtotal(calculatedSubtotal);
