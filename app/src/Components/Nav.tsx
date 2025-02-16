@@ -4,7 +4,7 @@ import { CiSearch } from "react-icons/ci";
 import { VscSettings } from "react-icons/vsc";
 import { FaHeart,  FaBell, } from "react-icons/fa";
 
-import { UserButton } from '@clerk/nextjs';
+
 
 const Nav = () => {
     // State to hold the search term
@@ -37,7 +37,7 @@ const Nav = () => {
                     <FaHeart />
                     <FaBell />
                     < VscSettings/>
-                    <UserButton />
+                   
                 </span>
             </div>
             {/* Display filtered car names */}
