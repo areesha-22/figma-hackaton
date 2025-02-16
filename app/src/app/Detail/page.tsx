@@ -75,6 +75,7 @@ const Page = () => {
     });
 
     setMap(mapInstance);
+  
     setMarker(markerInstance);
 
     markerInstance.addListener("dragend", () => {
