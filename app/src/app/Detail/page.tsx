@@ -14,7 +14,7 @@ const Page = () => {
   const [dropoffDate, setDropoffDate] = useState("");
   const [dropoffTime, setDropoffTime] = useState("");
   const [totalPrice, setTotalPrice] = useState(0);
-  const [distance, setDistance] = useState(0);
+  const [distance] = useState(0);
   const [map, setMap] = useState(null);
   const [marker, setMarker] = useState(null);
   const [selectedCoords, setSelectedCoords] = useState({ lat: null, lng: null });
@@ -34,6 +34,7 @@ const Page = () => {
       console.log("Map initialized:",selectedCoords);
     }
   }, [selectedCoords]);
+ 
   
   
   useEffect(() => {
