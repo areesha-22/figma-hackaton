@@ -6,14 +6,8 @@ import { RiSettingsFill } from "react-icons/ri";
 import { CiCircleInfo } from "react-icons/ci";
 import Footer from "@/Components/Footer";
 import Link from "next/link";
-// global.d.ts
-export {}; // Ensure this is treated as a module
 
-declare global {
-  interface Window {
-    google: typeof google;
-  }
-}
+
 
 const Page = () => {
   const [location, setLocation] = useState("Select a location");
@@ -46,10 +40,11 @@ const Page = () => {
   
   useEffect(() => {
     const loadGoogleMaps = async () => {
-      if (window.google?.maps) { // ✅ This avoids TypeScript errors
+      if (window.google?.maps) {
         initMap();
         return;
       }
+      
       const script = document.createElement("script");
       script.src = `https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY`;
       script.async = true;
@@ -85,17 +80,18 @@ const Page = () => {
     });
   };
 
-  const fetchLocation = async (lat, lng) => {
+  const fetchLocation = async (lat: number, lng: number): Promise<void> => {
     try {
       const response = await fetch(
         `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}`
       );
       const data = await response.json();
-      setLocation(data.display_name || "Selected location");
+      console.log(data);
     } catch (error) {
       console.error("Error fetching location:", error);
     }
   };
+  
 
   useEffect(() => {
     const now = new Date();
