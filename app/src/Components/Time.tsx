@@ -10,7 +10,7 @@ import { FaArrowDownLong, FaArrowUpLong } from "react-icons/fa6";
   
 
   return (
-    <div className=" flex relative bottom-40">
+    <div className=" flex relative bottom-5">
     <div>
       <h2 className="text-lg font-bold">Pick-Up</h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 ">

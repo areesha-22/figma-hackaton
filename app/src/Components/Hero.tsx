@@ -1,47 +1,67 @@
 import React from 'react'
 import Image from 'next/image'
-import Link from "next/link"
+import Link from 'next/link'
 
 const Hero = () => {
   return (
-    <>
-      <div className="md:flex   gap-5 px-4 relative top-10 md:top-10 lg:top-20">
-        <div className="w-full ">
-          <div>
-            <Image src="/bg1.jpeg" width={553} height={450} alt='BG-IMAGE' />
-          </div>
-          <div className="w-[500px] md:w-[400px] lg:w-[500px] h-[350px] md:h-[300px] lg:h-[350px] rounded-lg relative bottom-64 px-6 md:px-4 lg:px-6">
-            <h1 className="font-semibold text-3xl text-white md:text-2xl lg:text-3xl">The Best Platform<br></br> for Car Rental</h1>
-            <p className="text-white font-medium text-base pt-5 md:text-sm lg:text-base">Ease of doing a car rental safely and<br></br> reliably. Of course at a low price.</p>
-            <Link href={ './Ctype'}>
-              <div className="pt-5">
-                <button className="bg-[#3563E9]  md:w-28 lg:w-32 h-11 text-white rounded-lg px-5 md:px-4 lg:px-5">Rental Car</button>
-              </div>
-            </Link>
-            <div>
-              <Image alt='car' src={"/car1.svg"} width={"350"} height={"100"} className='relative left-32 bottom-12 md:left-20 lg:left-32' />
-            </div>
-          </div>
+    <div className="flex flex-col md:flex-row items-center justify-center gap-10 px-6 md:px-12 lg:px-20 xl:px-32 relative py-10 md:py-16 lg:py-20">
+      {/* Left Section */}
+      <div className="w-full md:w-1/2 flex flex-col items-center md:items-start text-center md:text-left">
+        <div className="relative w-full max-w-[500px]">
+          <Image
+            src="/bg1.jpeg"
+            alt="Background Image 1"
+            width={553}
+            height={450}
+            priority
+            className="rounded-lg w-full h-auto object-cover"
+          />
         </div>
-        <section className="w-full ">
-          <div>
-            <Image src="/bg2.jpeg" width={553} height={450} alt='BG-IMAGE' />
-          </div>
-          <div className="w-[500px] md:w-[400px] lg:w-[500px] h-[350px] md:h-[300px] lg:h-[350px] rounded-lg relative bottom-64 px-6 md:px-4 lg:px-6">
-            <h1 className="font-semibold text-3xl text-white md:text-2xl lg:text-3xl">Easy way to rent a<br></br> car at a low price</h1>
-            <p className="text-white font-medium text-base pt-5 md:text-sm lg:text-base">Providing cheap car rental services<br></br> and safe and comfortable facilities.</p>
-            <Link href={ '/Rent'}>
-              <div className="pt-5">
-                <button className="bg-[#54A6FF]  md:w-28 lg:w-32 lg:h-11 text-white rounded-lg px-5 md:px-4 lg:px-5">Rental Car</button>
-              </div>
-            </Link>
-            <div>
-              <Image alt='car' src={"/car2.svg"} width={"310"} height={"100"} className='relative left-32 bottom-12 md:left-20 lg:left-32' />
-            </div>
-          </div>
-        </section>
+        <div className=" absolute p-6 md:p-8 rounded-lg text-white max-w-[85%] md:max-w-[400px]">
+          <h1 className="font-semibold text-2xl md:text-3xl lg:text-4xl leading-tight">
+            The Best Platform for Car Rental
+          </h1>
+          <p className="mt-4 text-sm md:text-base">
+            Ease of doing a car rental safely and reliably. Of course, at a low price.
+          </p>
+          <Link href="/Ctype">
+            <button className=" bg-[#3563E9] text-white font-semibold px-6 py-3 rounded-lg hover:bg-blue-600 transition">
+              Rental Car
+            </button>
+          </Link>
+        </div>
+        
       </div>
-    </>
+
+      {/* Right Section */}
+      <div className="w-full md:w-1/2 flex flex-col items-center md:items-start text-center md:text-left">
+        <div className="relative w-full max-w-[500px]">
+          <Image
+            src="/bg2.jpeg"
+            alt="Background Image 2"
+            width={553}
+            height={450}
+            priority
+            className="rounded-lg w-full h-auto object-cover"
+          />
+        </div>
+        <div className="absolute pb-40   p-6 md:p-8 rounded-lg text-white max-w-[85%] md:max-w-[400px]">
+          <h1 className="font-semibold text-2xl md:text-3xl lg:text-4xl leading-tight">
+            Easy way to rent a car at a low price
+          </h1>
+          <p className="mt-4 text-sm md:text-base">
+            Providing cheap car rental services with safe and comfortable facilities.
+          </p>
+          
+          <Link href="/Rent">
+            <button className=" bg-[#54A6FF] text-white font-semibold px-3 py-3 rounded-lg hover:bg-blue-400 transition">
+              Rental Car
+            </button>
+          </Link>
+        </div>
+       
+      </div>
+    </div>
   )
 }
 
