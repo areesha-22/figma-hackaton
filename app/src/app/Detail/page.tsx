@@ -5,7 +5,7 @@ import { FaHome, FaCar, FaWallet } from "react-icons/fa";
 
 import { RiSettingsFill } from "react-icons/ri";
 import { CiCircleInfo } from "react-icons/ci";
-import { MdShoppingBag, MdOutlineWbSunny } from "react-icons/md";
+
 import Footer from "@/Components/Footer";
 import Link from "next/link";
 

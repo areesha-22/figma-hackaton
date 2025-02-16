@@ -5,7 +5,7 @@ import { client } from "@/sanity/lib/client";
 import Image from "next/image"
 import Link from "next/link"
 import { Product } from "../../../type/product";
-import { allProducts, three } from "@/lib/queiry";
+import { allProducts} from "@/lib/queiry";
 import { urlFor } from "@/sanity/lib/image";
 
   export default function CarsComponent() {
