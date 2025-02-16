@@ -2,10 +2,8 @@
 
 import React, { useState, useEffect } from "react";
 import { FaHome, FaCar, FaWallet } from "react-icons/fa";
-
 import { RiSettingsFill } from "react-icons/ri";
 import { CiCircleInfo } from "react-icons/ci";
-
 import Footer from "@/Components/Footer";
 import Link from "next/link";
 
@@ -20,26 +18,39 @@ const Page = () => {
   const [map, setMap] = useState(null);
   const [marker, setMarker] = useState(null);
   const [selectedCoords, setSelectedCoords] = useState({ lat: null, lng: null });
-
-  // Load Google Maps
+  useEffect(() => {
+    if (map) {
+      console.log("Map initialized:", map);
+    }
+  }, [map]);
+  
+  useEffect(() => {
+    if (marker) {
+      console.log("Marker updated:", marker);
+    }
+  }, [marker]);
+  useEffect(() => {
+    if (selectedCoords) {
+      console.log("Map initialized:",selectedCoords);
+    }
+  }, [selectedCoords]);
+  
+  
   useEffect(() => {
     const loadGoogleMaps = async () => {
-      if (!window.google) {
-        const script = document.createElement("script");
-        script.src = `https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY&callback=initMap
-        `;
-        script.async = true;
-        script.onload = initMap;
-        document.body.appendChild(script);
-      } else {
+      if (window.google?.maps) {
         initMap();
+        return;
       }
+      const script = document.createElement("script");
+      script.src = `https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY`;
+      script.async = true;
+      script.onload = initMap;
+      document.body.appendChild(script);
     };
-
     loadGoogleMaps();
   }, []);
 
-  // Initialize Google Map
   const initMap = () => {
     const defaultCoords = { lat: 25.276987, lng: 55.296249 }; // Default to Dubai
     const mapInstance = new window.google.maps.Map(document.getElementById("map"), {
@@ -63,7 +74,6 @@ const Page = () => {
     });
   };
 
-  // Fetch location name from coordinates
   const fetchLocation = async (lat, lng) => {
     try {
       const response = await fetch(
@@ -76,7 +86,6 @@ const Page = () => {
     }
   };
 
-  // Auto-fill Date & Time
   useEffect(() => {
     const now = new Date();
     const formattedDate = now.toISOString().split("T")[0];
@@ -87,13 +96,12 @@ const Page = () => {
     setDropoffTime(formattedTime);
   }, []);
 
-  // Calculate Rental Price
   useEffect(() => {
     if (pickupDate && dropoffDate) {
       const start = new Date(`${pickupDate}T${pickupTime}`);
       const end = new Date(`${dropoffDate}T${dropoffTime}`);
-      const diffHours = Math.max((end - start) / 36e5, 1); // Minimum 1 hour
-      const price = distance * 0.5 + diffHours * 10; // $0.5/km + $10/hour
+      const diffHours = Math.max((end - start) / 36e5, 1);
+      const price = distance * 0.5 + diffHours * 10;
       setTotalPrice(price);
     }
   }, [pickupDate, pickupTime, dropoffDate, dropoffTime, distance]);
@@ -101,7 +109,6 @@ const Page = () => {
   return (
     <div className="p-4 sm:p-8">
       <div className="flex flex-col md:flex-row gap-8">
-        {/* Sidebar */}
         <div className="w-full md:w-1/4 bg-gray-100 p-4 rounded-lg shadow">
           <ul className="space-y-4">
             <Link href="/"><li className="flex items-center gap-4 hover:text-[#3563E9] text-gray-500"><FaHome /> Dashboard</li></Link>
@@ -112,63 +119,18 @@ const Page = () => {
           <ul className="space-y-4 mt-4">
             <li className="flex items-center gap-4 hover:text-[#3563E9] text-gray-500"><RiSettingsFill /> Settings</li>
             <li className="flex items-center gap-4 hover:text-[#3563E9] text-gray-500"><CiCircleInfo /> Help & Center</li>
-           
           </ul>
-          <div className="text-gray-500 font-semibold text-xl mt-12">Log Out</div>
-        
-
+          <button className="text-gray-500 font-semibold text-xl mt-12 hover:text-[#3563E9]">
+            Log Out
+          </button>
         </div>
 
-        {/* Main Content */}
         <div className="w-full md:w-3/4 space-y-8">
-          {/* Rental Details */}
-          <div>
-            <h1 className="font-bold text-2xl">Details Rental</h1>
-            <div className="mt-4">
-              <label className="font-bold text-lg">Selected Location:</label>
-              <p className="text-gray-500 mt-2">{location}</p>
-            </div>
-          </div>
-
-          {/* Google Map */}
+          <h1 className="font-bold text-2xl">Details Rental</h1>
+          <p className="text-gray-500 mt-2">{location}</p>
           <div className="w-full h-64 md:h-80 rounded-lg mt-4" id="map"></div>
-
-          {/* Pick-Up and Drop-Off */}
-          <div className="space-y-8">
-            <div>
-              <h2 className="text-lg font-bold">Pick-Up</h2>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
-                <div>
-                  <label className="font-bold text-lg block">Date:</label>
-                  <input type="date" className="w-full border p-2 rounded mt-2" value={pickupDate} onChange={(e) => setPickupDate(e.target.value)} />
-                </div>
-                <div>
-                  <label className="font-semibold text-base block">Time:</label>
-                  <input type="time" className="w-full border p-2 rounded mt-2" value={pickupTime} onChange={(e) => setPickupTime(e.target.value)} />
-                </div>
-              </div>
-            </div>
-
-            <div>
-              <h2 className="text-lg font-bold">Drop-Off</h2>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
-                <div>
-                  <label className="font-bold text-lg block">Date:</label>
-                  <input type="date" className="w-full border p-2 rounded mt-2" value={dropoffDate} onChange={(e) => setDropoffDate(e.target.value)} />
-                </div>
-                <div>
-                  <label className="font-semibold text-base block">Time:</label>
-                  <input type="time" className="w-full border p-2 rounded mt-2" value={dropoffTime} onChange={(e) => setDropoffTime(e.target.value)} />
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Total Rental Price */}
-          <div className="flex justify-between items-center">
-            <h2 className="font-bold text-xl">Total Rental Price</h2>
-            <div className="font-bold text-3xl">${totalPrice.toFixed(2)}</div>
-          </div>
+          <h2 className="font-bold text-xl">Total Rental Price</h2>
+          <div className="font-bold text-3xl">${totalPrice.toFixed(2)}</div>
         </div>
       </div>
       <Footer />
