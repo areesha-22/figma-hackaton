@@ -104,6 +104,8 @@ const Page = () => {
   }, []);
 
   useEffect(() => {
+
+    
     if (pickupDate && dropoffDate) {
       const start: Date = new Date(pickupDate + "T" + pickupTime);
       const end: Date = new Date(dropoffDate + "T" + dropoffTime);
