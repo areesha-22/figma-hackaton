@@ -6,6 +6,14 @@ import { RiSettingsFill } from "react-icons/ri";
 import { CiCircleInfo } from "react-icons/ci";
 import Footer from "@/Components/Footer";
 import Link from "next/link";
+// global.d.ts
+export {}; // Ensure this is treated as a module
+
+declare global {
+  interface Window {
+    google: typeof google;
+  }
+}
 
 const Page = () => {
   const [location, setLocation] = useState("Select a location");
@@ -36,10 +44,9 @@ const Page = () => {
   }, [selectedCoords]);
  
   
-  
   useEffect(() => {
     const loadGoogleMaps = async () => {
-      if (window.google?.maps) {
+      if (window.google?.maps) { // ✅ This avoids TypeScript errors
         initMap();
         return;
       }
@@ -49,8 +56,10 @@ const Page = () => {
       script.onload = initMap;
       document.body.appendChild(script);
     };
+  
     loadGoogleMaps();
   }, []);
+  
 
   const initMap = () => {
     const defaultCoords = { lat: 25.276987, lng: 55.296249 }; // Default to Dubai
@@ -99,10 +108,11 @@ const Page = () => {
 
   useEffect(() => {
     if (pickupDate && dropoffDate) {
-      const start = new Date(`${pickupDate}T${pickupTime}`);
-      const end = new Date(`${dropoffDate}T${dropoffTime}`);
-      const diffHours = Math.max((end - start) / 36e5, 1);
-      const price = distance * 0.5 + diffHours * 10;
+      const start: Date = new Date(pickupDate + "T" + pickupTime);
+      const end: Date = new Date(dropoffDate + "T" + dropoffTime);
+      
+      const hours: number = Math.max((end.getTime() - start.getTime()) / 36e5, 1);
+      const price = distance * 0.5 + hours* 10;
       setTotalPrice(price);
     }
   }, [pickupDate, pickupTime, dropoffDate, dropoffTime, distance]);
