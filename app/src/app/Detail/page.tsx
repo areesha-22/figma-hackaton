@@ -10,7 +10,7 @@ import Link from "next/link";
 
 
 const Page = () => {
-  const [location, setLocation] = useState("Select a location");
+  const [location] = useState("Select a location");
   const [pickupDate, setPickupDate] = useState("");
   const [pickupTime, setPickupTime] = useState("");
   const [dropoffDate, setDropoffDate] = useState("");
